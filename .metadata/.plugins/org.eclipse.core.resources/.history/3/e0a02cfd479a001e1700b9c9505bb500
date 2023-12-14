@@ -1,0 +1,49 @@
+package com.eif.service;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import com.eif.data.Student;
+
+public class StudentService {
+
+	private List<Student> student_list = new ArrayList<Student>(Arrays.asList(
+			new Student( "Aman",25,"Dubai","UAE","IT"),
+			new Student( "Altaf",35,"Abu Dhabi","UAE","IT"),
+			new Student( "Rakesh",27,"London","Uk","IT"))); 
+	
+	public List<Student> getAllStudents(){
+		return student_list;
+		}
+	
+	public Student getStudent_byName(String Name) {
+		Student st;
+		st= student_list.stream()
+				.filter(s->s.getName().equalsIgnoreCase(Name))
+				.findFirst().get();
+		return st;
+	}
+	
+	public Student getStudent_byId(int Id) {
+		
+		return  student_list.stream()
+				.filter(s->s.getId()==Id)
+				.findFirst().get();
+	}
+	
+	public void addStudent(Student st) {
+		student_list.add(st);
+	}
+	
+	public void updateStudent(Student st) {
+		for(int i=0;i<student_list.size();i++) {
+			if(student_list.get(i).getId() ==st.getId()) {
+				student_list.set(i, st);
+				}
+			}	
+	}
+	
+	
+}
+	

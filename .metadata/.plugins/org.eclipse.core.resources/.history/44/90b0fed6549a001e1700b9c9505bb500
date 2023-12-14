@@ -1,0 +1,32 @@
+package com.eif.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.eif.data.Student;
+import com.eif.service.StudentService;
+
+@RestController
+public class StudentController {
+	@Autowired
+	private StudentService st_service;
+	
+	@RequestMapping(method = RequestMethod.GET,value="/students")
+	public List<Student> GetAllStudents(){
+		return st_service.getAllStudents();
+	}
+	@RequestMapping(method = RequestMethod.GET,value="/student_name/{name}")
+	public Student GetStudentByName(@PathVariable String name){
+		return st_service.getStudent_byName(name);
+	}
+	@RequestMapping(method = RequestMethod.GET,value="/student_id/{Id}")
+	public Student GetStudentByID(@PathVariable int Id){
+		return st_service.getStudent_byId(Id);
+	}
+
+}

@@ -1,0 +1,22 @@
+package com.eif.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.eif.data.Student;
+import com.eif.service.StudentService;
+
+@RestController
+public class StudentController {
+	@Autowired
+	private StudentService st_service;
+	
+	@RequestMapping("/students")
+	public List<Student> GetAllStudents(){
+		return st_service.getAllStudents();
+	}
+
+}
